@@ -1,0 +1,7 @@
+import pandas as pd
+file_location = '/Users/krashik/Downloads/intro_dataset.xlsx'
+df=pd.read_excel(file_location)
+#количество проданных апельсинов за год
+oranges_sum = df['Апельсины'].sum()
+sorted_tangerines = df['Мандарины'].sort_values(ascending=False).reset_index(drop=True)
+top_one_of_tangerines = sorted_tangerines[0]
