@@ -1,0 +1,11 @@
+Задание 3 
+
+list_of_dicts = [{'post': 'post 1', 'author': 'author 1', 'followers': 4000, 'likes': 20, 'comments':10}, 
+{'post': 'post 2', 'author': 'author 2', 'followers': 5000, 'likes': 50, 'comments':60},
+{'post': 'post 3', 'author': 'author 3', 'followers': 6000, 'likes': 70, 'comments':5}]
+
+def ER(data):
+	for i in data:
+		ER = (i['likes']+i['comments'])/i['followers']
+		print('Engagement Rate по {} равен: {}'.format(i['author'], ER))
+ER(list_of_dicts)
