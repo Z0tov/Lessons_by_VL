@@ -4,8 +4,38 @@ list_of_dicts = [{'post': 'post 1', 'author': 'author 1', 'followers': 4000, 'li
 {'post': 'post 2', 'author': 'author 2', 'followers': 5000, 'likes': 50, 'comments':60},
 {'post': 'post 3', 'author': 'author 3', 'followers': 6000, 'likes': 70, 'comments':5}]
 
-def ER(data):
+def print_engagemgent_rate(data):
 	for i in data:
-		ER = (i['likes']+i['comments'])/i['followers']
-		print('Engagement Rate по {} равен: {}'.format(i['author'], ER))
-ER(list_of_dicts)
+		engagement_rate = (i['likes']+i['comments'])/i['followers']
+		print('Engagement Rate по {} равен: {}'.format(i['author'], engagement_rate))
+print_engagemgent_rate(list_of_dicts)
+_______________________________________________________________________________________________________________
+Задание 4
+
+list_of_dicts = [{'author': 'kommersant', 'link': 'link 1', 'OTS': 50000, 'type': 'media'}, 
+                 {'author': 'vedomosti', 'link': 'link 1', 'OTS': 100000, 'type': 'media'},
+                 {'author': 'kommersant', 'link': 'link 1', 'OTS': 20000, 'type': 'VK'},
+                 {'author': 'kommersant', 'link': 'link 1', 'OTS': 5000, 'type': 'FB'}]
+
+def print_target_contacts(data):
+	for i in range(len(data)):
+		ots = data[i]['OTS']
+		if data[i]['type'] == 'media':
+			tc_media = ots * 0.8 * 0.01
+			print('Значение TC по автору {} равно {}.'.format(data[i]['author'], int(tc_media)))
+		elif data[i]['type'] == 'VK':
+			tc_vk = ots * 0.8 * 0.1
+			print('Значение TC по автору {} равно {}.'.format(data[i]['author'], int(tc_vk)))
+		elif data[i]['type'] == 'FB':
+			tc_fb = ots * 0.8 * 0.3
+			print('Значение TC по автору {} равно {}.'.format(data[i]['author'], int(tc_fb)))
+
+print_target_contacts(list_of_dicts)
+#хотел бы увидеть как это выглядит, если мне нужно не вывести результаты счета, 
+#а добавить результаты в саму таблицу. В теории я понимаю, что нужно было 
+#написать код через .append(), но как это делать со словарями?
+
+_______________________________________________________________________________________________________________
+
+Задание 5 
+
