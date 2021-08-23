@@ -39,3 +39,14 @@ ________________________________________________________________________________
 
 Задание 5 
 
+import pandas as pd
+for_read = open('/Users/krashik/Downloads/ll.txt')
+for_split = for_read.read()
+splitted_data = for_split.split(' ')
+col = ['col']
+df = pd.DataFrame(data = splitted_data, columns = col)
+
+users = df[df['col'].str.contains('data-from-id')]
+
+print(users)
+
