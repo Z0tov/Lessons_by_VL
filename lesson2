@@ -9,9 +9,11 @@ def print_engagemgent_rate(data):
 		engagement_rate = (i['likes']+i['comments'])/i['followers']
 		print('Engagement Rate по {} равен: {}'.format(i['author'], engagement_rate))
 print_engagemgent_rate(list_of_dicts)
+
 """
 альтернативное решение с изменением списка словарей (в прошлом варианте не посчитал среднее значение)
 """
+
 mean_er = 0
 
 for i in range(len(list_of_dicts)):
@@ -20,7 +22,7 @@ for i in range(len(list_of_dicts)):
     mean_er += list_of_dicts[i]['ER'] / len(list_of_dicts)
     
 print('Средний показатель Engagement Rate равен: {:.1%}'.format(mean_er))
-_______________________________________________________________________________________________________________
+#_______________________________________________________________________________________________________________
 Задание 4
 
 list_of_dicts = [{'author': 'kommersant', 'link': 'link 1', 'OTS': 50000, 'type': 'media'}, 
@@ -46,7 +48,27 @@ print_target_contacts(list_of_dicts)
 #а добавить результаты в саму таблицу. В теории я понимаю, что нужно было 
 #написать код через .append(), но как это делать со словарями?
 
-_______________________________________________________________________________________________________________
+'''
+Нашёл вариант, но не уверен насколько он релевантен.
+'''
+
+def add_target_contacts(data):
+    for i in range(len(data)):
+        ots = data[i]['OTS']
+        if data[i]['type'] == 'media':
+            tc_media = ots * 0.8 * 0.01
+            data[i]['TC'] = int(tc_media)
+        elif data[i]['type'] == 'VK':
+            tc_vk = ots * 0.8 * 0.1
+            data[i]['TC'] = int(tc_vk)
+        elif data[i]['type'] == 'FB':
+            tc_fb = ots * 0.8 * 0.3
+            data[i]['TC'] = int(tc_fb)
+
+print_target_contacts(list_of_dicts)
+print(list_of_dicts)
+
+#_______________________________________________________________________________________________________________
 
 Задание 5 
 
