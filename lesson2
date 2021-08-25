@@ -9,6 +9,17 @@ def print_engagemgent_rate(data):
 		engagement_rate = (i['likes']+i['comments'])/i['followers']
 		print('Engagement Rate по {} равен: {}'.format(i['author'], engagement_rate))
 print_engagemgent_rate(list_of_dicts)
+"""
+альтернативное решение с изменением списка словарей (в прошлом варианте не посчитал среднее значение)
+"""
+mean_er = 0
+
+for i in range(len(list_of_dicts)):
+    engagement_rate = (list_of_dicts[i]['likes'] + list_of_dicts[i]['comments']) / list_of_dicts[i]['followers']
+    list_of_dicts[i]['ER'] = engagement_rate
+    mean_er += list_of_dicts[i]['ER'] / len(list_of_dicts)
+    
+print('Средний показатель Engagement Rate равен: {:.1%}'.format(mean_er))
 _______________________________________________________________________________________________________________
 Задание 4
 
