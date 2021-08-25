@@ -49,7 +49,7 @@ print_target_contacts(list_of_dicts)
 #написать код через .append(), но как это делать со словарями?
 
 '''
-Нашёл вариант, но не уверен насколько он релевантен.
+Нашёл вариант.
 '''
 
 def add_target_contacts(data):
