@@ -1,4 +1,4 @@
-Задание 3 
+#Задание 3 
 
 list_of_dicts = [{'post': 'post 1', 'author': 'author 1', 'followers': 4000, 'likes': 20, 'comments':10}, 
 {'post': 'post 2', 'author': 'author 2', 'followers': 5000, 'likes': 50, 'comments':60},
@@ -23,7 +23,7 @@ for i in range(len(list_of_dicts)):
     
 print('Средний показатель Engagement Rate равен: {:.1%}'.format(mean_er))
 #_______________________________________________________________________________________________________________
-Задание 4
+#Задание 4
 
 list_of_dicts = [{'author': 'kommersant', 'link': 'link 1', 'OTS': 50000, 'type': 'media'}, 
                  {'author': 'vedomosti', 'link': 'link 1', 'OTS': 100000, 'type': 'media'},
@@ -71,7 +71,7 @@ print(list_of_dicts)
 
 #_______________________________________________________________________________________________________________
 
-Задание 5 
+#Задание 5 
 
 import pandas as pd
 for_read = open('/Users/krashik/Downloads/ll.txt')
