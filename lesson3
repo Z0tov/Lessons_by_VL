@@ -56,3 +56,32 @@ for i in link.items():
 #_________________________________________________________________________________________________
 #Задание 4
 
+#делал очень наспех, голову сломал как тут применить *args или **kwargs
+#получились костыли :(
+
+import pandas as pd
+df = pd.read_excel('dataset_lesson2.xlsx')
+dfc = list(df.T.to_dict().values())
+
+def sub_sum_or_mean_er(*data):
+	count = 0
+	mean_er = 0
+	mean = 0
+	if 1 in data and not 2 in data:
+		for row in dfc:
+			count += row['Followers']
+		return count
+	elif 2 in data and not 1 in data:
+		for row in dfc:
+			mean += row['ER']
+			mean_er = mean / len(dfc)
+		return mean_er
+	elif 1 and 2 in data:
+		return 'было очень мало времени в течение \
+			\nнедели и это лучшее, что я придумал'
+
+count = 'Общее количество подписчиков составляет {}'.format(sub_sum_or_mean_er(1))
+mean_er = 'Среднее значение ER составляет {}'.format(sub_sum_or_mean_er(2))
+args_result = sub_sum_or_mean_er(1,2)
+print(args_result)
+
