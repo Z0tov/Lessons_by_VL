@@ -1,0 +1,36 @@
+#Задание 1
+
+import pandas as pd
+df = pd.read_excel('dataset_lesson2.xlsx')
+dfc = list(df.T.to_dict().values())
+
+new_list = []
+count = 0
+followers_sum = 0
+followers_mean = 0
+er_sum = 0
+er_mean = 0
+for row in dfc:
+	if count < 1000000:
+		new_list.append(row)
+		count += row['Followers']
+
+for row in new_list:
+	followers_sum += row['Followers']
+	followers_mean = followers_sum / len(new_list)
+	er_sum += row['ER']
+	er_mean = er_sum / len(new_list)
+
+print('Среднее количество подписчиков по новому списку равняется {:.0f}'.format(followers_mean))
+print('Среднее значение ER по новому списку равняется {:.3f}'.format(er_mean))
+
+#_________________________________________________________________________________________________
+#Задание 2
+
+#Все тоже самое, только отредактировать строку: if count < 1000000 and row['ER'] >= 0.05:
+
+#_________________________________________________________________________________________________
+#Задание 3 
+
+
+
