@@ -90,3 +90,29 @@ mean_er = 'Среднее значение ER составляет {}'.format(su
 args_result = sub_sum_or_mean_er(1,2)
 print(args_result)
 
+#____________________________________________________________________________________________________
+#Задание 5
+#только начинал делать, времени не хватило :(
+import pandas as pd
+df = pd.read_excel('dataset_lesson2_2.xlsx')
+dfc = list(df.T.to_dict().values())
+
+
+
+impressions_sum = 0
+crm = 0
+new_list = []
+str_list = []
+
+for row in dfc:
+	new_list.append(row['Impressions'])
+
+
+for row in new_list:
+	try:
+		impressions_sum += row
+	except TypeError: 
+		pass
+	
+print(new_list)
+print(impressions_sum)
