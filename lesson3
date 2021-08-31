@@ -44,15 +44,15 @@ for_sort = txt.split('www.instagram.com/')
 nickname = []
 link = dict()
 
-for i in for_sort:
-	nickname.append(i.split('">')[0])
+for i in range(1, len(for_sort)):
+	nickname.append(for_sort[i].split('">')[0])
 
-for i in nickname:
-	link[i] = 'www.instagram.com/'+i
+for i in range(1, len(nickname)):
+	link[nickname[i]] = 'www.instagram.com/'+ nickname[i]
 
-for i in link.items():
-	print(i)#здесь какая-то аномалия. В спайдере отлично выводит весь список, а в vsc\pyCharm 
-	#бесконечно печатает строки
+for row in link.items():
+	print(row)
+print('Количество уникальных пользователей в файле: {}'.format(len(link)))
 	
 #_________________________________________________________________________________________________
 #Задание 4
