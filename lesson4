@@ -1,0 +1,20 @@
+import pandas as pd
+from pptx import Presentation
+
+df = pd.read_excel('tricolor.xlsx', sheet_name='Упоминания')
+tricolor = df.loc[:, 'Дата' : 'Просмотры']
+
+#количество упоминаний
+mentions_count = 'Всего зафиксировано {} упоминания за отчетный период'.format(df['Дата'].count())
+#расчет тональности
+tonality = (df['Тональность'].value_counts() / df['Тональность'].count())*100
+#расчет распределения публикаций по источникам
+for_sources = df[df['Тональность']=='Негативная']
+for_sources2 = (for_sources['Источник'].value_counts() / for_sources['Источник'].count())
+sources = for_sources2[:10]
+sources['Другие'] = for_sources2[10:].sum()
+sources_final = dict()
+for key, value in sources.items():
+    sources_final[key] = '{:.1%}'.format(value)
+sources_final = pd.DataFrame.from_dict(sources_final, orient='index', columns=['Percents'])
+print(sources_final)
