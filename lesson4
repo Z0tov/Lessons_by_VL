@@ -18,3 +18,18 @@ for key, value in sources.items():
     sources_final[key] = '{:.1%}'.format(value)
 sources_final = pd.DataFrame.from_dict(sources_final, orient='index', columns=['Percents'])
 print(sources_final)
+
+
+#можно не смотреть, просто альтернативные (первые ревизии) варианты решений (скорее для себя)
+
+#sources_final.to_excel('newtry.xlsx', sheet_name='1')
+#_________альтернативное решение__________________________________________________________________
+#tricolor_sources = df.groupby('Источник')['Источник'].count().for_sourcest_values(ascending=False)
+#tricolor_sources2 = (tricolor_sources / tricolor_sources.sum())*100
+#print(tricolor_sources2.head(15))
+#_________________________________________________________________________________________________
+#_________DataFrame_альтернативный способ с разделением на столбец и значение_____________________
+# test = ['Соц.сеть']
+# df1 = pd.DataFrame(data=sources.keys(), columns=test)
+# df1['Значения'] = sources.values
+# print(df1)
