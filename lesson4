@@ -1,13 +1,16 @@
 import pandas as pd
-from pptx import Presentation
+from pptx import Presentation 
 
 df = pd.read_excel('tricolor.xlsx', sheet_name='Упоминания')
-tricolor = df.loc[:, 'Дата' : 'Просмотры']
 
 #количество упоминаний
 mentions_count = 'Всего зафиксировано {} упоминания за отчетный период'.format(df['Дата'].count())
 #расчет тональности
-tonality = (df['Тональность'].value_counts() / df['Тональность'].count())*100
+tonality = (df['Тональность'].value_counts() / df['Тональность'].count())
+tonality_dict = dict()
+for key, value in tonality.items():
+    tonality_dict[key] = '{:.1%}'.format(value)
+tonality_final = pd.DataFrame.from_dict(tonality_dict, orient='index', columns=['Тональность'])
 #расчет распределения публикаций по источникам
 for_sources = df[df['Тональность']=='Негативная']
 for_sources2 = (for_sources['Источник'].value_counts() / for_sources['Источник'].count())
@@ -17,18 +20,23 @@ sources_final = dict()
 for key, value in sources.items():
     sources_final[key] = '{:.1%}'.format(value)
 sources_final = pd.DataFrame.from_dict(sources_final, orient='index', columns=['Percents'])
-print(sources_final)
+#print(sources_final)
+
+with pd.ExcelWriter('tricolor.xlsx') as writer:
+    df.to_excel(writer, sheet_name='Упоминания')
+    sources_final.to_excel(writer, sheet_name='Топ-10 источников')
+    tonality_final.to_excel(writer, sheet_name='Тональность')
 
 
-#можно не смотреть, просто альтернативные (первые ревизии) варианты решений (скорее для себя)
+
 
 #sources_final.to_excel('newtry.xlsx', sheet_name='1')
-#_________альтернативное решение__________________________________________________________________
+#_________альтернативное решение_________________________________________________________________
 #tricolor_sources = df.groupby('Источник')['Источник'].count().for_sourcest_values(ascending=False)
 #tricolor_sources2 = (tricolor_sources / tricolor_sources.sum())*100
 #print(tricolor_sources2.head(15))
-#_________________________________________________________________________________________________
-#_________DataFrame_альтернативный способ с разделением на столбец и значение_____________________
+#________________________________________________________________________________________________
+#_________DataFrame_альтернативный способ с разделением на столбец и значение____________________
 # test = ['Соц.сеть']
 # df1 = pd.DataFrame(data=sources.keys(), columns=test)
 # df1['Значения'] = sources.values
