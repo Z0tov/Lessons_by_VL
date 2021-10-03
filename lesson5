@@ -71,3 +71,37 @@ comments.to_excel('lll.xlsx')
 #____________________________________________________________________________________________________________________________________________
 #____________________________________________________________________________________________________________________________________________
 #Задание 2
+
+import vk
+import pandas as pd
+import time
+
+access = 'a1063195b35a44aba759dd9dd38dab3efe5121e6d405d8f5194a67b0fa25a3c703ccff70c81de1edffd05'
+community_id = '27863223'
+
+def get_session(access):
+    session = vk.AuthSession(access)
+    return vk.API(session)
+
+def get_count_of_subscribers(community_id, access):
+    vk_api = get_session(access)
+    members = vk_api.groups.getMembers(group_id='{}'.format(community_id), count=1000, access_token = access, v = '5.84')
+    return members['count']
+
+members = get_count_of_subscribers(community_id, access)
+
+def get_subscribers(community_id, access, c=members):
+    vk_api = get_session(access)
+    df_2 = pd.DataFrame()
+    n = 0 
+    while n < c:
+        time.sleep(0.33)
+        sub = vk_api.groups.getMembers(group_id='{}'.format(community_id), count=1000, offset = n, access_token = access, v = '5.84')
+        df = pd.DataFrame(sub['items'])
+        df_2 = df_2.append(df)
+        n = n + 1000
+    return df_2[0].apply(lambda x: 'https://vk.com/id{}'.format(x)).reset_index(drop = True)
+
+sowhat = get_subscribers(community_id, access)
+#print(sowhat)
+sowhat.to_excel('all_subscribers.xlsx')
