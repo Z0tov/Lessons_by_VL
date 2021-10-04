@@ -59,7 +59,7 @@ def get_community_comments(community_id, access):
     return x
 
 community_id = '27863223'
-access = 'a1063195b35a44aba759dd9dd38dab3efe5121e6d405d8f5194a67b0fa25a3c703ccff70c81de1edffd05'
+access = 'вцеляхбезопасностиизменёнчтобынеукралимойаккаунтвк'
 posts_count = 10
 skolko = 10
 posts = get_community_posts(community_id, access, posts_count, skolko)
@@ -76,7 +76,7 @@ import vk
 import pandas as pd
 import time
 
-access = 'a1063195b35a44aba759dd9dd38dab3efe5121e6d405d8f5194a67b0fa25a3c703ccff70c81de1edffd05'
+access = 'вцеляхбезопасностиизменёнчтобынеукралимойаккаунтвк'
 community_id = '27863223'
 
 def get_session(access):
