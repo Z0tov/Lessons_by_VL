@@ -1,7 +1,5 @@
-from bs4.element import PageElement
 import requests
 from bs4 import BeautifulSoup
-import csv
 
 URL =  "https://4pda.to/"
 HEADERS = {
